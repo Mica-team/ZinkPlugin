@@ -20,14 +20,13 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: |
-        ./gradlew assembleRelease
-        cp app/build/outputs/apk/release/app-release.apk MJZinkPlugin-release.apk
+        ./gradlew assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: plugin-release
-        path: MJZinkPlugin-release.apk
+        name: app-debug
+        path: app/build/outputs/apk/debug/app-debug.apk
 
     - name: Release APK
       uses: softprops/action-gh-release@v1
@@ -35,4 +34,4 @@ jobs:
         tag_name: rel
         name: Mojo ZINK Plugin
         files: |
-          MJZinkPlugin-release.apk
+          app/build/outputs/apk/debug/app-debug.apk
